@@ -28,8 +28,9 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const page = pageMap[keyFromParams(params)];
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const page = pageMap[keyFromParams(resolvedParams)];
   if (!page) return {};
 
   const path = page.slug ? `/${page.slug}` : "/";
@@ -49,8 +50,9 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   };
 }
 
-export default function Page({ params }: { params: Params }) {
-  const page = pageMap[keyFromParams(params)];
+export default async function Page({ params }: { params: Promise<Params> }) {
+  const resolvedParams = await params;
+  const page = pageMap[keyFromParams(resolvedParams)];
   if (!page) notFound();
 
   return <ReplicaPageWithRuntime html={page.html} />;
