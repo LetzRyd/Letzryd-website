@@ -1,0 +1,19 @@
+@import "../src/styles/replica.css";
+
+html,
+body {
+  min-height: 100%;
+}
+
+.replica-page {
+  min-height: 100vh;
+}
+
+.replica-page video,
+.replica-page img {
+  max-width: none;
+}
+
+.replica-page .transition[data-animation-state="active"] {
+  pointer-events: auto;
+}
