@@ -244,7 +244,7 @@ async function main() {
   for (const url of assetUrls) {
     const name = assetName(url);
     const localPath = path.join(publicAssetDir, name);
-    assetMap[url] = `/replica-assets/${name}`;
+    assetMap[url] = `/Letzryd-website/replica-assets/${name}`;
     await download(url, localPath);
   }
 
